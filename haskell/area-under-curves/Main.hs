@@ -20,10 +20,10 @@ rotate f x = pi * r ** 2
     where r = f x
 
 area ∷ (Double → Double) → Double → Double → Double
-area f l r = integral f
+area f l r = integral f l r
 
 volume ∷ (Double → Double) → Double → Double → Double
-volume f l r = integral (rotate f)
+volume f l r = integral (rotate f) l r
 
 solve ∷ Int → Int → [Int] → [Int] → [Double]
 solve l r a b = do
