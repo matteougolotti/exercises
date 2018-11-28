@@ -4,13 +4,8 @@ module Radix(radix) where
 
   listToBuckets ∷ [Int] → Int → Int → [[Int]]
   listToBuckets numbers base iteration =
-    let
-      numberWithDigit = (\ n → (n, (n `quot` (base ^ iteration)) `mod` base)) <$> numbers
-    in
-      [ fst <$> filter (\ (number, digit) → digit == bucket) numberWithDigit | bucket ← [0..base] ]
-
-  bucketsToLists ∷ [[Int]] → [Int]
-  bucketsToLists = concat
+    let numberWithDigit = (\ n → (n, (n `quot` (base ^ iteration)) `mod` base)) <$> numbers
+    in [ fst <$> filter (\ (number, digit) → digit == bucket) numberWithDigit | bucket ← [0..base] ]
 
   radix ∷ [Int] → Int → [Int]
   radix [] _         = []
@@ -23,4 +18,4 @@ module Radix(radix) where
       rsort n m' it
         | null n         = []
         | base ^ it > m' = n
-        | otherwise      = rsort (bucketsToLists (listToBuckets n base it)) m' (it + 1)
+        | otherwise      = rsort (concat (listToBuckets n base it)) m' (it + 1)
