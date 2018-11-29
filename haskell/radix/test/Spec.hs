@@ -21,5 +21,5 @@ properties = testGroup "Properties" [radixProps]
 radixProps = testGroup "Test properties"
   [
     QC.testProperty "sort == radix" $
-      \list -> sort (list :: [Int]) == Radix.radix list 10
+      \list -> sort (list :: [Int]) == Radix.radix list
   ]

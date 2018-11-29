@@ -7,15 +7,16 @@ module Radix(radix) where
     let numberWithDigit = (\ n → (n, (n `quot` (base ^ iteration)) `mod` base)) <$> numbers
     in [ fst <$> filter (\ (number, digit) → digit == bucket) numberWithDigit | bucket ← [0..base] ]
 
-  radix ∷ [Int] → Int → [Int]
-  radix [] _         = []
-  radix numbers base = do
+  radix ∷ [Int] → [Int]
+  radix []      = []
+  radix numbers = do
+    let base = 10
     let m = maximum (abs <$> numbers)
     reverse ((\ x → -x) <$> rsort ((\ x → -x) <$> filter (<0) numbers) m 0)
       ++ rsort (filter (>=0) numbers) m 0
     where
       rsort ∷ [Int] → Int -> Int -> [Int]
       rsort n m' it
-        | null n         = []
-        | base ^ it > m' = n
-        | otherwise      = rsort (concat (listToBuckets n base it)) m' (it + 1)
+        | null n       = []
+        | 10 ^ it > m' = n
+        | otherwise    = rsort (concat (listToBuckets n 10 it)) m' (it + 1)
