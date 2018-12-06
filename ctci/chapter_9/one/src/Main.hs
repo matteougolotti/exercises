@@ -4,8 +4,8 @@
 
 module Main where
 
-  import Control.Monad.State.Strict
-  import qualified Data.Map.Strict as M
+  import qualified Control.Monad.State.Strict as ST
+  import qualified Data.Map.Strict            as M
 
   set :: Int -> State (M.Map Int Int) ()
   set n = state (\ st -> ((), M.insert n n st))
