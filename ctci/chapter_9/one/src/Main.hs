@@ -4,13 +4,21 @@
 
 module Main where
 
+  import Control.Monad.State.Strict
+  import qualified Data.Map.Strict as M
+
+  set :: Int -> State (M.Map Int Int) ()
+  set n = state (\ st -> ((), M.insert n n st))
+
+  get :: Int -> State (M.Map Int Int) (Maybe Int)
+  get k = state (\ st -> (M.lookup k st, st))
+
   count ∷ Int → Int
   count n
-    | n == 0    = 0
-    | n == 1    = 1
-    | n == 2    = 2
-    | n == 3    = 3
-    | n < 0     = 0
+    | n == 1 = 1
+    | n == 2 = 2
+    | n == 3 = 3
+    | n <= 0 = 0
     | otherwise = count (n - 1) + count (n - 2) + count (n - 3)
 
   main ∷ IO ()
