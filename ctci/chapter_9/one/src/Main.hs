@@ -14,7 +14,7 @@ module Main where
   get :: Int → ST.State (M.Map Int Int) (Maybe Int)
   get k = ST.state (\ st → (M.lookup k st, st))
 
-  count :: Int -> ST.State (M.Map Int Int) Int
+  count :: Int → ST.State (M.Map Int Int) Int
   count n = countWithCache n Nothing
     where
       countWithCache ∷ Int → Maybe Int → ST.State (M.Map Int Int) Int
