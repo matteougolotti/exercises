@@ -29,8 +29,9 @@ void printlist(Node_t* list) {
 }
 
 void freelist(Node_t* list) {
-  if (list->next == NULL) free(list);
-  else freelist(list->next);
+  if (list) return;
+  if (list && list->next) freelist(list->next);
+  free(list);
 }
 
 void removedups(Node_t* list) {
