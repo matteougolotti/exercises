@@ -14,16 +14,16 @@ def minimumDistances(a):
             last_indexes[a[i]] = i
 
     distance_values = [ value for key, value in distances.items() ]
-    
+
     if len(distance_values) > 0:
         return min(distance_values)
     else:
         return -1
 
 
-class TestSuite1(unittest.TestCase):
+class TestSuite(unittest.TestCase):
 
-    def testCase1(self):
+    def testCase(self):
         self.assertEqual(3, minimumDistances([7, 1, 3, 4, 1, 7]))
 
 if __name__ == "__main__":
