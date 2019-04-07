@@ -11,7 +11,6 @@ def solve(sudoku : List[List[int]]) -> bool:
         flag = 1
         possible_values = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
-        # Remove values in row
         for k in range(9):
           possible_values[sudoku[y][k]] = 0
           possible_values[sudoku[k][x]] = 0
